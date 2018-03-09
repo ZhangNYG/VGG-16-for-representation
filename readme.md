@@ -1,6 +1,10 @@
 # VGG in TensorFlow
 
-https://www.cs.toronto.edu/~frossard/post/vgg16/
+https://www.cs.toronto.edu/~frossard/post/vgg16/ 
+
+https://www.cs.toronto.edu/~frossard/vgg16/vgg16_weights.npz 
+
+
 Files
 
 Model weights - vgg16_weights.npz
