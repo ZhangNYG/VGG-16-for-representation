@@ -14,6 +14,29 @@ import os
 from imagenet_classes import class_names
 
 
+def consin(p=[],q=[]):
+
+    # 获取 p、q 数组的维度信息
+    shape_n = len(p)
+
+    # 求出p，q的乘积和
+    sum_xy = sum([p[i]*q[i] for i in range(shape_n)])
+    # 分别求出p，q的平方和
+    sum_x_sq = sum([p[i]**2 for i in range(shape_n)])
+    sum_y_sq = sum([q[i]**2 for i in range(shape_n)])
+    # 求出consin相关系数
+    up = sum_xy
+    down = (sum_x_sq*sum_y_sq)**.5
+    # 若down为零则不能计算，return 0
+    if down == 0 :return 0
+
+    result = up/down
+    return result
+
+
+
+
+
 class vgg16:
     def __init__(self, imgs, weights=None, sess=None):
         self.imgs = imgs
@@ -299,8 +322,8 @@ if __name__ == '__main__':
 
             # 计算欧式距离
             u_dis = np.sqrt(np.sum(np.square(fc1_value_now - fc1_value_last)))
-
-            print( "当前照片是 ",str(num_image_zhang) + ".jpg","与照片",str(num_image_zhang - 1) + ".jpg    ","欧式距离：   ",u_dis)
+            consin_result = consin(fc1_value_now,fc1_value_last)
+            print( "当前照片是 ",str(num_image_zhang) + ".jpg","与照片",str(num_image_zhang - 1) + ".jpg    ","欧式距离：   ",u_dis,"      相似度：  ",consin_result)
 
 
 
